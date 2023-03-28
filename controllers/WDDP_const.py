@@ -265,7 +265,6 @@ class WDDP_const:
             u_new[t] = u[t] + alpha * L[t] + K[t] @ (x_new[t] - x[t])
             ind = np.random.choice(self.N_samples)
             w_new[t] = w[t] + alpha * (h_sample[t,ind] + H[t] @ (x_new[t] - x[t]))
-            u_new[t] = self.system.get_action(x_new[t], u_new[t], grad=True)
             xuw = torch.cat([x_new[t], u_new[t], w_new[t]])
 
             x_new[t+1] = self.system.dyn(xuw[:self.nx], xuw[self.nx:self.nx+self.nu], xuw[self.nx+self.nu:], t, grad=True)

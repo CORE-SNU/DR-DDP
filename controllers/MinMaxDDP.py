@@ -139,7 +139,6 @@ class MinMaxDDP:
             
             action = np.concatenate([u[t], w[t]])
             x[t+1], cost_, done, info = self.system.step(action)
-            u[t] = self.system.get_action(x[t], u[t])
 
         
             if render:

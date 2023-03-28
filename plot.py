@@ -626,7 +626,9 @@ def summarize(out_baseline_list, out_drddp_list, dist, path, num, ddp_baseline_n
                     obs_patch = ax.add_patch(plt.Circle((x_mean[num,3+2*obs_indx], x_mean[num,3+2*obs_indx+1]),0.3, facecolor=obs_face_color, edgecolor=obs_edge_color))
                     obs_patch_list.append(obs_patch)
                     obs_traj_plot_list[obs_indx].set_data(x_mean[:num,3+2*obs_indx,0], x_mean[:num,3+2*obs_indx+1,0])
-                        
+                    for obs_indx in range(len(obs_list[num])):
+                        if check_col(x_mean[num,:2,0], x_mean[num,3+2*obs_indx:3+2*(obs_indx+1),0], 0.3):
+                            ax.plot(x_mean[num,0,0], x_mean[num,1,0], marker="*", markerfacecolor=blue, markeredgecolor='black', markeredgewidth=0.5)
                     
                 # ref_plot.set_data(ref_mean[:num,0,0], ref_mean[:num,1,0])
                 # ref_plot.set_3d_properties(ref_mean[:num,2,0])
